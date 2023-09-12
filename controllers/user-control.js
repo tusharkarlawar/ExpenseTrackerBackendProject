@@ -58,11 +58,8 @@ exports.addUser = async(req,res,next)=>{
 
 
 function generateAccessToken(id, isPremium){
-    return jwt.sign({userId: id, isPremium}, 'secretKeyIsBiggerValue')
+    return jwt.sign({userId: id, isPremium}, process.env.SECRET_KEY) //generate token//stateless
 }
-
-
-
 
 exports.userLogin = async(req,res,next)=>{
     const transaction = await sequelize.transaction();
@@ -86,15 +83,10 @@ exports.userLogin = async(req,res,next)=>{
                 }
                 //console.log(result);
                 if(result===true){
-                    //res.redirect("index.html");
                     return(
                         res.json({msg:"Password is correct",
                     success:true, token: generateAccessToken(login[0].id, login[0].isPremium)}
                     ))
-
-                    res.json({msg:"Password is correct",success:true, token: generateAccessToken(login[0].id, login[0].isPremium)})
-                    await transaction,commit();
-
                 }else{
                     return(res.json({msg:"Password is incorrect",
                     success:false}))
@@ -111,5 +103,3 @@ exports.userLogin = async(req,res,next)=>{
         await transaction.rollback();
     }
 }
-
-//

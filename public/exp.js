@@ -92,9 +92,6 @@ async function showDownloadButton(){
         console.log(err);
 
     }
-    
-    
-    
 }
 
 
@@ -262,7 +259,6 @@ document.getElementById("premium").onclick = async function(e){
         localStorage.setItem('token', result.data.token);
         
         showPremiumButton();
-        
         showLeaderboard(); 
         showDownloadButton();
         

@@ -20,7 +20,7 @@ button.addEventListener("click", async(e)=>{
             
             console.log("User data is available in DB");
             alert("User Logged In");
-            window.location.href="./index.html";
+            window.location.href="./index.html"; //redirect to index.html
             
         }else{
             console.log("User Not existing");

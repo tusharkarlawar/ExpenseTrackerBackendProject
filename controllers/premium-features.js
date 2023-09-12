@@ -9,7 +9,8 @@ const AWS = require("aws-sdk");
 exports.leaderboardDetails = async(req,res,next)=>{
     try{
         const leaderBoardOfUsers = await user.findAll({
-            order: [['totalExpense', "DESC"]]
+            order: [['totalExpense', "DESC"]]  /*is telling Sequelize to order the query result 
+                                              in descending order based on the totalExpense column*/
         });
 
         res.json(leaderBoardOfUsers);
@@ -79,4 +80,3 @@ async function uploadToS3(data, fileName){
         console.log(err);
     }
 }
-//
